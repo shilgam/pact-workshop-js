@@ -1,0 +1,9 @@
+# ci configuration
+
+version: '3.4'
+services:
+  consumer:
+    build: ../consumer/
+    ports:
+      - "3000:3000"
+    command: npm start
