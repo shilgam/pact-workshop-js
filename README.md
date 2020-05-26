@@ -1,5 +1,26 @@
 # Pact JS workshop
 
+[![Build Status](https://travis-ci.com/shilgam/pact-workshop-js.svg?branch=master)](https://travis-ci.com/shilgam/pact-workshop-js)
+
+## Prerequisites
+
+Docker and docker-compose installed
+
+## Usage
+
+1. clone the repo
+
+1. Build the Docker images:
+
+        $ docker-compose -f consumer/docker-compose.yml -f provider/docker-compose.yml build
+
+1. start both provider and consumer apps:
+
+        $ docker-compose -f consumer/docker-compose.yml -f consumer/docker-compose.override.yml -f provider/docker-compose.yml -f provider/docker-compose.override.yml up
+
+1. open your browser and navigate to http://localhost:3000
+
+
 ## Introduction
 
 This workshop is aimed at demonstrating core features and benefits of contract testing with Pact.

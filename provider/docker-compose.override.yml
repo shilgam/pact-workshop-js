@@ -1,0 +1,10 @@
+# development configuration
+#
+# docker-compose run --service-ports --rm provider
+
+version: '3.4'
+services:
+  provider:
+    volumes:
+      - ../provider:/usr/src/provider/
+      - $PWD/temp/bash_history:/root/

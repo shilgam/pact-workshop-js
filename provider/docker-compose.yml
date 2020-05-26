@@ -1,0 +1,9 @@
+# ci configuration
+
+version: '3.4'
+services:
+  provider:
+    build: ../provider/
+    ports:
+      - "8080:8080"
+    command: npm start
