@@ -17,6 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test",
+    "test:pact": "CI=true react-scripts test api.pact.spec.js",
+    "test:unit": "CI=true react-scripts test api.unit.spec.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -35,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "@pact-foundation/pact": "^9.11.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0",

@@ -8,7 +8,7 @@ Product Service (Provider). Provides useful things about products, such as listi
 
 1. start the local web server
 
-        $ docker-compose run --service-ports --rm consumer
+        $ docker-compose run --service-ports --rm provider
 
 1. make a request to the endpoint
         $ curl http://localhost:8080/products

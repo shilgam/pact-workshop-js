@@ -3,8 +3,14 @@ services:
 
 jobs:
   include:
-    - stage: "Tests"
-      name: "Consumer app"
+    - stage: "Consumer app"
+      name: "Unit"
       script: |
         cd consumer
-        docker-compose -f docker-compose.yml run --rm consumer npm test
+        docker-compose -f docker-compose.yml run --rm consumer npm run test:unit
+
+    - name: "Contract"
+      script: |
+        cd consumer
+
+        docker-compose -f docker-compose.yml run --rm consumer npm run test:pact

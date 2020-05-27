@@ -8,3 +8,5 @@ services:
     volumes:
       - ../provider:/usr/src/provider/
       - $PWD/temp/bash_history:/root/
+      # data vol to store node_modules
+      - /usr/src/provider/node_modules
