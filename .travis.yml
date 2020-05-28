@@ -14,3 +14,10 @@ jobs:
         cd consumer
 
         docker-compose -f docker-compose.yml run --rm consumer npm run test:pact
+
+    - stage: "Provider app"
+      name: "Contract"
+      script: |
+        cd provider
+
+        docker-compose -f docker-compose.yml run --rm provider npm run test:pact

@@ -1,6 +1,6 @@
 # Consumer App
 
-Product Catalog website. It provides an interface to query the Product service for product information.
+Product Catalog website provides an interface to query the Product service for product information.
 
 ## Usage
 
