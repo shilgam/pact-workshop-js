@@ -1,0 +1,11 @@
+# publish contracts from consumer
+
+version: '3.4'
+services:
+  consumer:
+    network_mode: host
+    environment:
+      - PACT_BROKER_URL
+      - PACT_BROKER_TOKEN
+      - GIT_DISCOVERY_ACROSS_FILESYSTEM=1 # find .git dir in the parent dirs
+      - TRAVIS_BRANCH

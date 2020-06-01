@@ -10,3 +10,4 @@ services:
       - $PWD/temp/bash_history:/root/
       # data vol to store node_modules
       - /usr/src/consumer/node_modules
+      - ../.git:/usr/src/.git

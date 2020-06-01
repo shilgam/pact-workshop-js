@@ -3,7 +3,9 @@
 version: '3.4'
 services:
   consumer:
-    build: ../consumer/
+    build:
+      context: ..
+      dockerfile: consumer/Dockerfile
     ports:
       - "3000:3000"
     command: npm start

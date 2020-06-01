@@ -8,17 +8,36 @@ Docker and docker-compose installed
 
 ## Usage
 
-1. clone the repo
+1. Clone the repo
 
 1. Build the Docker images:
 
-        $ docker-compose -f consumer/docker-compose.yml -f provider/docker-compose.yml build
+        $ make build
 
 1. start both provider and consumer apps:
 
-        $ docker-compose -f consumer/docker-compose.yml -f consumer/docker-compose.override.yml -f provider/docker-compose.yml -f provider/docker-compose.override.yml up
+        $ make start
 
 1. open your browser and navigate to http://localhost:3000
+
+## Publish contracts from consumer app
+
+1. Launch Dockerized [Pact Broker](https://github.com/DiUS/pact_broker-docker) locally:
+
+        $ docker-compose up
+    Pact Broker will be accessible at http://localhost:8081
+
+1. Build docker image for consumer app (Run from separate terminal window)
+
+        $ make build
+
+1. Publish contracts to Pact Broker
+
+        $ make consumer_publish_pact
+
+1. Verify contracts on Provider and publish results to the Broker
+
+        $ make provider_verify_pact
 
 
 ## Introduction

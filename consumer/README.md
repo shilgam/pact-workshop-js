@@ -1,28 +1,37 @@
 # Consumer App
 
+[![FrontendWebsite/ProductService Pact Status](https://telegacom.pact.dius.com.au/pacts/provider/ProductService/consumer/FrontendWebsite/latest/badge.svg?label=provider)](https://telegacom.pact.dius.com.au/pacts/provider/ProductService/consumer/FrontendWebsite/latest) (latest pact)
+
 Product Catalog website provides an interface to query the Product service for product information.
 
 ## Usage
 
-1. cd into `consumer` dir
+1. cd into project's root dir
 
-1. start the local web server
+1. start only consumer app:
 
-        $ docker-compose run --service-ports --rm consumer
+        $ make start_consumer
 
 1. open your browser and navigate to http://localhost:3000
 
 
 ### Run the test suite
 
-1. Run all tests at once
+1. run all tests at once
 
-        $ docker-compose run --rm consumer npm test
+        $ make consumer_test
 
-1. Run only unit tests
+1. run only unit tests
 
-        $ docker-compose run --rm consumer npm run test:unit
+        $ make consumer_test_unit
 
-1. Run only contract tests
+1. run only contract tests
 
-        $ docker-compose run --rm consumer npm run test:pact
+        $ make consumer_test_contract
+
+
+### Generate and publish contract files to Pact Broker
+
+1. generate contract file and publish to Pact Broker
+
+        $ make consumer_publish_pact

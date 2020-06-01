@@ -4,17 +4,18 @@ Product Service (Provider) provides useful things about products, such as listin
 
 ## Usage
 
-1. cd into `provider` dir
+1. cd into project's root dir
 
 1. start the local web server
 
-        $ docker-compose run --service-ports --rm provider
+        $ make start_provider
 
 1. make a request to the endpoint
         $ curl http://localhost:8080/products
 
-### Run the test suite
 
-1. Run contract tests
+### Verify contracts
 
-        $ docker-compose run --rm provider npm run test:pact
+1. verify contracts on Provider and publish results to the Broker
+
+        $ make provider_verify_pact

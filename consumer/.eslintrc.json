@@ -31,6 +31,6 @@
   ],
   "rules": {
     "indent": ["error", 4],
-    "quotes": ["error", "double"]
+    "quotes": ["error", "single"]
   }
 }

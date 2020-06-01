@@ -64,7 +64,7 @@ describe("API Pact test", () => {
         });
     });
 
-    describe("getting one product", () => {
+    describe.skip("getting one product", () => {
         test("ID 10 exists", async () => {
 
             // set up Pact interactions
