@@ -62,6 +62,32 @@ describe("API Pact test", () => {
                 {"id": "09", "name": "Gem Visa", "type": "CREDIT_CARD"}
             ]);
         });
+
+        test('no products exists', async () => {
+            // set up Pact interactions
+            await provider.addInteraction({
+                state: 'no products exist',
+                uponReceiving: 'get all products',
+                withRequest: {
+                    method: 'GET',
+                    path: '/products',
+                },
+                willRespondWith: {
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                    },
+                    body: [],
+                },
+            });
+
+            const api = new API(provider.mockService.baseUrl);
+
+            // make request to Pact mock server
+            const products = await api.getAllProducts();
+
+            expect(products).toStrictEqual([]);
+        });
     });
 
     describe("getting one product", () => {
@@ -98,6 +124,26 @@ describe("API Pact test", () => {
                 type: "CREDIT_CARD",
                 name: "28 Degrees"
             });
+        });
+
+        test('product does not exist', async () => {
+            // set up Pact interactions
+            await provider.addInteraction({
+                state: 'product with ID 11 does not exist',
+                uponReceiving: 'get product with ID 11',
+                withRequest: {
+                    method: 'GET',
+                    path: '/product/11',
+                },
+                willRespondWith: {
+                    status: 404,
+                },
+            });
+
+            const api = new API(provider.mockService.baseUrl);
+
+            // make request to Pact mock server
+            await expect(api.getProduct('11')).rejects.toThrow('Request failed with status code 404');
         });
     });
 });
