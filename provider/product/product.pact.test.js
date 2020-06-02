@@ -24,6 +24,30 @@ const providerName = 'ProductService';
 const pactBrokerUsername = process.env.PACT_BROKER_USERNAME || 'pact_workshop';
 const pactBrokerPassword = process.env.PACT_BROKER_PASSWORD || 'pact_workshop';
 
+// Setup stateHandlers
+const controller = require('./product.controller');
+const Product = require('./product');
+
+const stateHandlers = {
+  'product with ID 10 exists': () => {
+    controller.repository.products = new Map([
+      ['10', new Product('10', 'CREDIT_CARD', '28 Degrees', 'v1')],
+    ]);
+  },
+  'products exist': () => {
+    controller.repository.products = new Map([
+      ['09', new Product('09', 'CREDIT_CARD', 'Gem Visa', 'v1')],
+      ['10', new Product('10', 'CREDIT_CARD', '28 Degrees', 'v1')],
+    ]);
+  },
+  'no products exist': () => {
+    controller.repository.products = new Map();
+  },
+  'product with ID 11 does not exist': () => {
+    controller.repository.products = new Map();
+  },
+};
+
 // confugure Verifier
 let opts;
 if (process.env.PACT_BROKER_TOKEN) {
@@ -36,6 +60,7 @@ if (process.env.PACT_BROKER_TOKEN) {
         providerVersionTags,
         publishVerificationResult: process.env.CI === 'true',
         pactBrokerUrl,
+        stateHandlers,
         pactBrokerToken: process.env.PACT_BROKER_TOKEN,
     };
 } else {
@@ -48,6 +73,7 @@ if (process.env.PACT_BROKER_TOKEN) {
         providerVersionTags,
         publishVerificationResult: process.env.CI === 'true',
         pactBrokerUrl,
+        stateHandlers,
         pactBrokerUsername,
         pactBrokerPassword,
     };
