@@ -3,12 +3,12 @@ const { Verifier } = require('@pact-foundation/pact');
 jest.setTimeout(15000);
 
 const gitCommitHash = require('child_process')
-    .execSync('git rev-parse --short HEAD')
-    .toString().trim();
+  .execSync('git rev-parse --short HEAD')
+  .toString().trim();
 
 const localGitBranch = require('child_process')
-    .execSync('git rev-parse --abbrev-ref HEAD')
-    .toString();
+  .execSync('git rev-parse --abbrev-ref HEAD')
+  .toString();
 
 const gitBranch = process.env.TRAVIS_BRANCH || localGitBranch;
 
@@ -51,51 +51,51 @@ const stateHandlers = {
 // confugure Verifier
 let opts;
 if (process.env.PACT_BROKER_TOKEN) {
-    console.log('Fetch pacts from remote Pact Broker...');
-    opts = {
-        provider: providerName,
-        providerBaseUrl,
-        logLevel,
-        providerVersion: gitCommitHash,
-        providerVersionTags,
-        publishVerificationResult: process.env.CI === 'true',
-        pactBrokerUrl,
-        stateHandlers,
-        pactBrokerToken: process.env.PACT_BROKER_TOKEN,
-    };
+  console.log('Fetch pacts from remote Pact Broker...');
+  opts = {
+    provider: providerName,
+    providerBaseUrl,
+    logLevel,
+    providerVersion: gitCommitHash,
+    providerVersionTags,
+    publishVerificationResult: process.env.CI === 'true',
+    pactBrokerUrl,
+    stateHandlers,
+    pactBrokerToken: process.env.PACT_BROKER_TOKEN,
+  };
 } else {
-    console.log('Fetch pacts from local Pact Broker...');
-    opts = {
-        provider: providerName,
-        providerBaseUrl,
-        logLevel,
-        providerVersion: gitCommitHash,
-        providerVersionTags,
-        publishVerificationResult: process.env.CI === 'true',
-        pactBrokerUrl,
-        stateHandlers,
-        pactBrokerUsername,
-        pactBrokerPassword,
-    };
+  console.log('Fetch pacts from local Pact Broker...');
+  opts = {
+    provider: providerName,
+    providerBaseUrl,
+    logLevel,
+    providerVersion: gitCommitHash,
+    providerVersionTags,
+    publishVerificationResult: process.env.CI === 'true',
+    pactBrokerUrl,
+    stateHandlers,
+    pactBrokerUsername,
+    pactBrokerPassword,
+  };
 }
 let server;
 
 describe('Pact Verification', () => {
-    beforeAll(() => {
-        server = app.listen('8080');
-    });
+  beforeAll(() => {
+    server = app.listen('8080');
+  });
 
-    afterAll(() => {
-        server.close();
-    });
+  afterAll(() => {
+    server.close();
+  });
 
-    it('validates the expectations of ProductService', async () => {
-        console.log('opts: ');
-        console.log(opts);
-        const provider = new Verifier(opts);
-        await provider.verifyProvider().then((output) => {
-            console.log('Pact Verification Complete!');
-            console.log(output);
-        });
+  it('validates the expectations of ProductService', async () => {
+    console.log('opts: ');
+    console.log(opts);
+    const provider = new Verifier(opts);
+    await provider.verifyProvider().then((output) => {
+      console.log('Pact Verification Complete!');
+      console.log(output);
     });
+  });
 });
