@@ -31,7 +31,7 @@ if (process.env.PACT_BROKER_TOKEN) {
         providerBaseUrl,
         pactFilesOrDirs,
         pactBroker: pactBrokerUrl,
-        tags: ['test', gitBranch],
+        tags: [gitBranch],
         consumerVersion: gitCommitHash,
         pactBrokerToken,
     };
@@ -41,7 +41,7 @@ if (process.env.PACT_BROKER_TOKEN) {
         providerBaseUrl,
         pactFilesOrDirs,
         pactBroker: pactBrokerUrl,
-        tags: ['test', gitBranch],
+        tags: [gitBranch],
         consumerVersion: gitCommitHash,
         pactBrokerUsername,
         pactBrokerPassword,

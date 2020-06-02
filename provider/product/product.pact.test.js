@@ -19,7 +19,7 @@ app.use(require('./product.routes'));
 const providerBaseUrl = 'http://localhost:8080';
 const pactBrokerUrl = process.env.PACT_BROKER_URL || 'http://localhost:8081';
 const logLevel = 'INFO';
-const providerVersionTags = ['0.1.0', gitBranch];
+const providerVersionTags = [gitBranch];
 const providerName = 'ProductService';
 const pactBrokerUsername = process.env.PACT_BROKER_USERNAME || 'pact_workshop';
 const pactBrokerPassword = process.env.PACT_BROKER_PASSWORD || 'pact_workshop';

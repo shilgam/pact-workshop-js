@@ -31,7 +31,7 @@ Docker and docker-compose installed
 
         $ make build
 
-1. Publish contracts to Pact Broker
+1. Generate and publish contracts to Pact Broker
 
         $ make consumer_publish_pact
 

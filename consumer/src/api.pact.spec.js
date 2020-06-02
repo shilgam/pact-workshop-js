@@ -64,7 +64,7 @@ describe("API Pact test", () => {
         });
     });
 
-    describe.skip("getting one product", () => {
+    describe("getting one product", () => {
         test("ID 10 exists", async () => {
 
             // set up Pact interactions
@@ -73,7 +73,7 @@ describe("API Pact test", () => {
                 uponReceiving: 'get product with ID 10',
                 withRequest: {
                     method: 'GET',
-                    path: '/products/10'
+                    path: '/product/10'
                 },
                 willRespondWith: {
                     status: 200,

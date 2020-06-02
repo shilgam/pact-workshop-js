@@ -2,6 +2,8 @@
 
 [![FrontendWebsite/ProductService Pact Status](https://telegacom.pact.dius.com.au/pacts/provider/ProductService/consumer/FrontendWebsite/latest/badge.svg?label=provider)](https://telegacom.pact.dius.com.au/pacts/provider/ProductService/consumer/FrontendWebsite/latest) (latest pact)
 
+[![FrontendWebsite/ProductService Pact Status](https://telegacom.pact.dius.com.au/matrix/provider/ProductService/latest/master/consumer/FrontendWebsite/latest/master/badge.svg?label=provider)](https://telegacom.pact.dius.com.au/pacts/provider/ProductService/consumer/FrontendWebsite/latest/master) (master/master pact)
+
 Product Catalog website provides an interface to query the Product service for product information.
 
 ## Usage
