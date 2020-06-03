@@ -1,20 +1,22 @@
-const { Verifier } = require('@pact-foundation/pact');
+import { Verifier } from '@pact-foundation/pact';
+import { execSync } from 'child_process';
+import express from 'express';
+import Product from './product';
+import controller from './product.controller';
+import routes from './product.routes';
+
 
 jest.setTimeout(15000);
 
-const gitCommitHash = require('child_process')
-  .execSync('git rev-parse --short HEAD')
-  .toString().trim();
+const gitCommitHash = execSync('git rev-parse --short HEAD').toString().trim();
 
-const localGitBranch = require('child_process')
-  .execSync('git rev-parse --abbrev-ref HEAD')
-  .toString();
+const localGitBranch = execSync('git rev-parse --abbrev-ref HEAD').toString();
 
 const gitBranch = process.env.TRAVIS_BRANCH || localGitBranch;
 
 // Setup provider server to verify
-const app = require('express')();
-app.use(require('./product.routes'));
+const app = express();
+app.use(routes);
 
 const providerBaseUrl = 'http://localhost:8080';
 const pactBrokerUrl = process.env.PACT_BROKER_URL || 'http://localhost:8081';
@@ -25,9 +27,6 @@ const pactBrokerUsername = process.env.PACT_BROKER_USERNAME || 'pact_workshop';
 const pactBrokerPassword = process.env.PACT_BROKER_PASSWORD || 'pact_workshop';
 
 // Setup stateHandlers
-const controller = require('./product.controller');
-const Product = require('./product');
-
 const stateHandlers = {
   'product with ID 10 exists': () => {
     controller.repository.products = new Map([
