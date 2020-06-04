@@ -49,6 +49,16 @@ const stateHandlers = {
   },
 };
 
+// Setup requestFilter
+const requestFilter = (req, res, next) => {
+  if (!req.headers.authorization) {
+    next();
+    return;
+  }
+  req.headers.authorization = `Bearer ${new Date().toISOString()}`;
+  next();
+};
+
 // confugure Verifier
 let opts;
 if (process.env.PACT_BROKER_TOKEN) {
@@ -62,6 +72,7 @@ if (process.env.PACT_BROKER_TOKEN) {
     publishVerificationResult: process.env.CI === 'true',
     pactBrokerUrl,
     stateHandlers,
+    requestFilter,
     pactBrokerToken: process.env.PACT_BROKER_TOKEN,
   };
 } else {
@@ -75,6 +86,7 @@ if (process.env.PACT_BROKER_TOKEN) {
     publishVerificationResult: process.env.CI === 'true',
     pactBrokerUrl,
     stateHandlers,
+    requestFilter,
     pactBrokerUsername,
     pactBrokerPassword,
   };

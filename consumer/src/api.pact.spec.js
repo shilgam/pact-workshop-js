@@ -174,7 +174,7 @@ describe('API Pact test', () => {
     test('no auth token', async () => {
       // set up Pact interactions
       await provider.addInteraction({
-        state: 'product with ID 10 exist',
+        state: 'product with ID 10 exists',
         uponReceiving: 'get product with ID 10 with no auth token',
         withRequest: {
           method: 'GET',
