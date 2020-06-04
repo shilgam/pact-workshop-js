@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   postgres:
-    image: postgres
+    image: postgres:12.3
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
     ports:
@@ -13,11 +13,11 @@ services:
       POSTGRES_DB: postgres
 
   broker_app:
-    image: dius/pact-broker
+    image: pactfoundation/pact-broker:2.56.1.0
     links:
       - postgres
     ports:
-      - 8081:80
+      - 8081:9292
     environment:
       PACT_BROKER_BASIC_AUTH_USERNAME: pact_workshop
       PACT_BROKER_BASIC_AUTH_PASSWORD: pact_workshop
