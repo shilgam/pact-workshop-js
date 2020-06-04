@@ -2,6 +2,7 @@ import { Verifier } from '@pact-foundation/pact';
 import { execSync } from 'child_process';
 import express from 'express';
 import Product from './product';
+import authMiddleware from '../middleware/auth.middleware';
 import controller from './product.controller';
 import routes from './product.routes';
 
@@ -16,6 +17,7 @@ const gitBranch = process.env.TRAVIS_BRANCH || localGitBranch;
 
 // Setup provider server to verify
 const app = express();
+app.use(authMiddleware);
 app.use(routes);
 
 const providerBaseUrl = 'http://localhost:8080';
