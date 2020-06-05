@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.com/shilgam/pact-workshop-js.svg?branch=master)](https://travis-ci.com/shilgam/pact-workshop-js)
 
+[![FrontendWebsite/ProductService Pact Status](https://telegacom.pact.dius.com.au/pacts/provider/ProductService/consumer/FrontendWebsite/latest/badge.svg)](https://telegacom.pact.dius.com.au) (latest pact)
+
+[![FrontendWebsite/ProductService Pact Status](https://telegacom.pact.dius.com.au/matrix/provider/ProductService/latest/master/consumer/FrontendWebsite/latest/master/badge.svg)](https://telegacom.pact.dius.com.au)
+
 ## Prerequisites
 
 Docker and docker-compose installed
